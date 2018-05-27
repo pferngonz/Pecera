@@ -1,5 +1,10 @@
 package com;
 
-public class Animal {
+import acm.graphics.GImage;
 
-}
+public interface Animal {
+	void reproducirse();
+	void comer();
+	void mover();
+	}
+
