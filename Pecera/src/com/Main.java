@@ -41,9 +41,10 @@ public class Main {
 				
 			}
 			for (int i = 0; i < numerobettas; i++) {
-				int genero=random.nextInt(2);
-				arraybetta.add(new Betta(genero));
-				if(genero==0) {
+				int genero2=random.nextInt(2);
+				System.out.println(genero2);
+				arraybetta.add(new Betta(genero2));
+				if(genero2==0) {
 					arraybetta.get(i).setGenero(true);
 					System.out.println("betta macho");
 				}
@@ -86,10 +87,10 @@ public class Main {
 				int contadoriguales=0;
 				System.out.println("guppy "+x+" y "+y);
 				for (int i = 0; i < numeroguppys; i++) {
-					if (x==posicionpeces[0][i] || x>=posicionpeces[0][i]+80 && x<=posicionpeces[0][i]-80) {
+					if (x==posicionpeces[0][i] || x>=posicionpeces[0][i]+120 && x<=posicionpeces[0][i]-120) {
 						contadoriguales++;
 					}
-					if (y==posicionpeces[1][i] || y>=posicionpeces[1][i]+80 && y<=posicionpeces[1][i]-80) {
+					if (y==posicionpeces[1][i] || y>=posicionpeces[1][i]+120 && y<=posicionpeces[1][i]-120) {
 						contadoriguales++;
 					}
 				}
@@ -105,10 +106,10 @@ public class Main {
 				int contadoriguales=0;
 				System.out.println("betta "+x+" y "+y);
 				for (int i = 0; i < numeroguppys+numerobettas; i++) {
-					if (x==posicionpeces[0][i] || x>=posicionpeces[0][i]+80 && x<=posicionpeces[0][i]-80) {
+					if (x==posicionpeces[0][i] || x>=posicionpeces[0][i]+120 && x<=posicionpeces[0][i]-120) {
 						contadoriguales++;
 					}
-					if (y==posicionpeces[1][i] || y>=posicionpeces[1][i]+80 && y<=posicionpeces[1][i]-80) {
+					if (y==posicionpeces[1][i] || y>=posicionpeces[1][i]+120 && y<=posicionpeces[1][i]-120) {
 						contadoriguales++;
 					}
 				}
@@ -124,10 +125,10 @@ public class Main {
 				int contadoriguales=0;
 				System.out.println("tiburon "+x+" y "+y);
 				for (int i = 0; i < numeroguppys+numerobettas+1; i++) {
-					if (x==posicionpeces[0][i] && x>=posicionpeces[0][i]+80 && x<=posicionpeces[0][i]-80) {
+					if (x==posicionpeces[0][i] && x>=posicionpeces[0][i]+120 && x<=posicionpeces[0][i]-120) {
 						contadoriguales++;
 					}
-					if (y==posicionpeces[1][i] && y>=posicionpeces[1][i]+80 && y<=posicionpeces[1][i]-80) {
+					if (y==posicionpeces[1][i] && y>=posicionpeces[1][i]+120 && y<=posicionpeces[1][i]-120) {
 						contadoriguales++;
 					}
 				}
