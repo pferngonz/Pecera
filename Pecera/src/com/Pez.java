@@ -5,6 +5,13 @@ import acm.graphics.GImage;
 public class Pez extends animalmarino{
 	private int X=0;
 	private int Y=0;
+	private boolean Genero;
+	public boolean getGenero() {
+		return Genero;
+	}
+	public void setGenero(boolean genero) {
+		this.Genero=genero;
+	}
 	public void setX(int posiciones) {
 		this.X=posiciones;
 	}

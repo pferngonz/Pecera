@@ -18,25 +18,42 @@ public class Main {
 			setSize(1280,720);
 			fondo.setSize(1280,720);
 			add(fondo, 0, 0);
-			Guppy guppymacho=new Guppy(0);
-			guppymacho.genero=true;
-			Guppy guppyhembra=new Guppy(1);
-			guppyhembra.genero=false;
-			Betta bettamacho=new Betta(0);
-			Betta bettahembra=new Betta(1);
-			bettamacho.genero=true;
-			bettahembra.genero=false;
-			ArrayList<Guppy> arrayguppy=new ArrayList<Guppy>();
+			ArrayList<Guppy> arrayguppy=new ArrayList<Guppy>();	
 			ArrayList<Betta> arraybetta=new ArrayList<Betta>();
-			arrayguppy.add(guppymacho);
-			arrayguppy.add(guppyhembra);
-			arraybetta.add(bettamacho);
-			arraybetta.add(bettahembra);
 			Tiburon tiburon=new Tiburon();
-			System.out.println(arrayguppy.size());
-			System.out.println(arraybetta.size());
-			int [][] posicionpeces=new int[2][5];
-			posicion(guppymacho, guppyhembra, bettamacho, bettahembra, tiburon, arrayguppy,  arraybetta, posicionpeces);
+			Random random=new Random();
+			int numeroguppys=random.nextInt(7)+1;
+			int numerobettas=random.nextInt(4)+1;
+			System.out.println(numeroguppys);
+			System.out.println(numerobettas);
+			int [][] posicionpeces=new int[2][numeroguppys+numerobettas+1];
+			for (int i = 0; i < numeroguppys; i++) {
+				int genero=random.nextInt(2);
+				arrayguppy.add(new Guppy(genero));
+				if(genero==0) {
+					arrayguppy.get(i).setGenero(true);
+					System.out.println("Guppy macho");
+				}
+				else {
+					arrayguppy.get(i).setGenero(false);
+					System.out.println("Guppy hembra");
+				}
+				
+			}
+			for (int i = 0; i < numerobettas; i++) {
+				int genero=random.nextInt(2);
+				arraybetta.add(new Betta(genero));
+				if(genero==0) {
+					arraybetta.get(i).setGenero(true);
+					System.out.println("betta macho");
+				}
+				else {
+					arraybetta.get(i).setGenero(false);
+					System.out.println("betta hembra");
+				}
+				
+			}
+			posicion(numeroguppys, numerobettas, tiburon, arrayguppy,  arraybetta, posicionpeces);
 			int contadorbettas=0;
 			for (int i = 0; i < arrayguppy.size(); i++) {
 				add(arrayguppy.get(i).getImagen(),posicionpeces[0][i],posicionpeces[1][i]);
@@ -57,17 +74,18 @@ public class Main {
 			boolean cierto=false;
 			waitForClick();
 		}
-		public static void posicion(Guppy guppymacho, Guppy guppyhembra, Betta bettamacho, Betta bettahembra, Tiburon tiburon, ArrayList arrayguppy, ArrayList arraybetta , int [][] posicionpeces) {
+
+		public static void posicion(int numeroguppys, int numerobettas, Tiburon tiburon, ArrayList arrayguppy, ArrayList arraybetta , int [][] posicionpeces) {
 			Random random=new Random();
 			int contadorguppys=0;
 			int contadorbettas=0;
 			int contadortiburones=0;
-			while(contadorguppys!=2) {
+			while(contadorguppys!=numeroguppys) {
 				int x=random.nextInt(800)+80;
 				int y=random.nextInt(400)+80;
 				int contadoriguales=0;
 				System.out.println("guppy "+x+" y "+y);
-				for (int i = 0; i < 2; i++) {
+				for (int i = 0; i < numeroguppys; i++) {
 					if (x==posicionpeces[0][i] || x>=posicionpeces[0][i]+80 && x<=posicionpeces[0][i]-80) {
 						contadoriguales++;
 					}
@@ -81,12 +99,12 @@ public class Main {
 					contadorguppys++;
 				}
 			}
-			while(contadorbettas!=2) {
+			while(contadorbettas!=numerobettas) {
 				int x=random.nextInt(800)+80;
 				int y=random.nextInt(400)+80;
 				int contadoriguales=0;
 				System.out.println("betta "+x+" y "+y);
-				for (int i = 0; i < 4; i++) {
+				for (int i = 0; i < numeroguppys+numerobettas; i++) {
 					if (x==posicionpeces[0][i] || x>=posicionpeces[0][i]+80 && x<=posicionpeces[0][i]-80) {
 						contadoriguales++;
 					}
@@ -105,7 +123,7 @@ public class Main {
 				int y=random.nextInt(400)+80;
 				int contadoriguales=0;
 				System.out.println("tiburon "+x+" y "+y);
-				for (int i = 0; i < 5; i++) {
+				for (int i = 0; i < numeroguppys+numerobettas+1; i++) {
 					if (x==posicionpeces[0][i] && x>=posicionpeces[0][i]+80 && x<=posicionpeces[0][i]-80) {
 						contadoriguales++;
 					}

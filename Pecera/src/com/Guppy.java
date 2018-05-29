@@ -1,5 +1,7 @@
 package com;
 
+import java.util.Random;
+
 import acm.graphics.GImage;
 
 public class Guppy extends Pez {
@@ -8,12 +10,13 @@ public class Guppy extends Pez {
 		return Imagen;
 	}
 	public Guppy(int genero){
-		
-		if(genero==0) {
+		Random random=new Random();
+		int genero1=random.nextInt(2);
+		if(genero1==0) {
 			this.Imagen=new GImage("https://rawgit.com/pferngonz/Pecera/master/imagenes/pezmacho.png");
 			this.Imagen.setSize(80,80);
 		}
-		if (genero==1) {
+		if (genero1==1) {
 			this.Imagen=new GImage("https://rawgit.com/pferngonz/Pecera/master/imagenes/pezhembra.png");
 			this.Imagen.setSize(80,80);
 
