@@ -74,6 +74,8 @@ public class Main {
 			}
 			boolean cierto=false;
 			waitForClick();
+			
+			
 		}
 
 		public static void posicion(int numeroguppys, int numerobettas, Tiburon tiburon, ArrayList arrayguppy, ArrayList arraybetta , int [][] posicionpeces) {
@@ -85,18 +87,19 @@ public class Main {
 				int x=random.nextInt(800)+80;
 				int y=random.nextInt(400)+80;
 				int contadoriguales=0;
-				System.out.println("guppy "+x+" y "+y);
+				System.out.println("guppy "+contadorguppys+" "+x+" y "+y);
 				for (int i = 0; i < numeroguppys; i++) {
-					if (x==posicionpeces[0][i] || x>=posicionpeces[0][i]+120 && x<=posicionpeces[0][i]-120) {
+					if (x>posicionpeces[0][i] && x<posicionpeces[0][i]+100 || x<posicionpeces[0][i] && x>posicionpeces[0][i]-100) {
 						contadoriguales++;
 					}
-					if (y==posicionpeces[1][i] || y>=posicionpeces[1][i]+120 && y<=posicionpeces[1][i]-120) {
+					if (y>posicionpeces[1][i] && y<posicionpeces[1][i]+100 || y<posicionpeces[1][i] && y>posicionpeces[1][i]-100) {
 						contadoriguales++;
 					}
 				}
 				if (contadoriguales==0) {
 					posicionpeces[0][contadorguppys]=x;
 					posicionpeces[1][contadorguppys]=y;
+					System.out.println("Guppy "+contadorguppys+" se queda con "+x+" y "+y);
 					contadorguppys++;
 				}
 			}
@@ -104,18 +107,19 @@ public class Main {
 				int x=random.nextInt(800)+80;
 				int y=random.nextInt(400)+80;
 				int contadoriguales=0;
-				System.out.println("betta "+x+" y "+y);
+				System.out.println("betta "+contadorbettas+" "+x+" y "+y);
 				for (int i = 0; i < numeroguppys+numerobettas; i++) {
-					if (x==posicionpeces[0][i] || x>=posicionpeces[0][i]+120 && x<=posicionpeces[0][i]-120) {
+					if (x>posicionpeces[0][i] && x<posicionpeces[0][i]+100 || x<posicionpeces[0][i] && x>posicionpeces[0][i]-100) {
 						contadoriguales++;
 					}
-					if (y==posicionpeces[1][i] || y>=posicionpeces[1][i]+120 && y<=posicionpeces[1][i]-120) {
+					if (y>posicionpeces[1][i] && y<posicionpeces[1][i]+100 || y<posicionpeces[1][i] && y>posicionpeces[1][i]-100) {
 						contadoriguales++;
 					}
 				}
 				if (contadoriguales==0) {
 					posicionpeces[0][contadorbettas+contadorguppys]=x;
 					posicionpeces[1][contadorbettas+contadorguppys]=y;
+					System.out.println("Betta "+contadorbettas+" se queda con "+x+" y "+y);
 					contadorbettas++;
 				}
 			}
@@ -125,10 +129,10 @@ public class Main {
 				int contadoriguales=0;
 				System.out.println("tiburon "+x+" y "+y);
 				for (int i = 0; i < numeroguppys+numerobettas+1; i++) {
-					if (x==posicionpeces[0][i] && x>=posicionpeces[0][i]+120 && x<=posicionpeces[0][i]-120) {
+					if (x>posicionpeces[0][i] && x<posicionpeces[0][i]+100 || x<posicionpeces[0][i] && x>posicionpeces[0][i]-100) {
 						contadoriguales++;
 					}
-					if (y==posicionpeces[1][i] && y>=posicionpeces[1][i]+120 && y<=posicionpeces[1][i]-120) {
+					if (y>posicionpeces[1][i] && y<posicionpeces[1][i]+100 || y<posicionpeces[1][i] && y>posicionpeces[1][i]-100) {
 						contadoriguales++;
 					}
 				}
