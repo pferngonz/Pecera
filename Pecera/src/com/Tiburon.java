@@ -13,7 +13,6 @@ public class Tiburon extends Pez{
 	public GImage getImagen() {
 		return Imagen;
 	}
-
 	public Tiburon(){
 		Random random=new Random();
 		int genero=random.nextInt(2);
@@ -30,4 +29,11 @@ public class Tiburon extends Pez{
 
 		}
 	}
+	@Override
+	public void mover(GImage Imagen) {
+		Imagen.move(10, 5);
+		this.setX(getX()+10);
+		this.setY(getY()+5);
+	}
+	
 }

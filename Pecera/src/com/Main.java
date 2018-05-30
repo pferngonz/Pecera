@@ -22,7 +22,7 @@ public class Main {
 			ArrayList<Betta> arraybetta=new ArrayList<Betta>();
 			Tiburon tiburon=new Tiburon();
 			Random random=new Random();
-			int numeroguppys=random.nextInt(7)+1;
+			int numeroguppys=random.nextInt(4)+1;
 			int numerobettas=random.nextInt(4)+1;
 			System.out.println(numeroguppys);
 			System.out.println(numerobettas);
@@ -77,28 +77,16 @@ public class Main {
 			 boolean vives = true;
 	            while (vives) {
 	                for (Guppy miguppy : arrayguppy) {
-	                	if(miguppy.getGenero()==true) {
-	                		miguppy.mover(5, 0,miguppy.getImagen());
-		                    pause(5);
-	                	}
-	                	else {
-	                		miguppy.mover(0, 5,miguppy.getImagen());
-		                    pause(5);
-	                	}
+	                	miguppy.mover(miguppy.getImagen());
+	                	pause(10);
 	                }
 	                for (Betta mibetta : arraybetta) {
-	                	if(mibetta.getGenero()==true) {
-	                		mibetta.mover(5, 0,mibetta.getImagen());
-		                    pause(5);
-	                	}
-	                	else {
-	                		mibetta.mover(0, 5,mibetta.getImagen());
-		                    pause(5);
-	                	}
+	                	mibetta.mover(mibetta.getImagen());
+	                	pause(10);
 	                	
 					}
-	                tiburon.mover(5, 0,tiburon.getImagen());
-	                pause(5);
+	                tiburon.mover(tiburon.getImagen());
+	                tiburon.getImagen().pause(3);
 	            }
 	        
 			
