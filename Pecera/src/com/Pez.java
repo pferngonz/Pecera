@@ -30,15 +30,20 @@ public class Pez extends animalmarino{
 	public void comer(){
 		
 	}
-	public void mover(GImage Imagen) {
-		if(this.Genero) {
-			Imagen.move(5, 0);
-			this.setX(getX()+5);
-		}
-		else {
-			Imagen.move(0, 5);
-		}
-	
+	public void mover(GImage Imagen, int heigth, int width) {
+			if(this.Genero && Imagen.getX()<=width-Imagen.getWidth()+80) {
+				Imagen.move(5, 0);
+				this.setX(getX()+5);
+			}
+			else if(this.Genero && Imagen.getX()>=width-Imagen.getWidth()) {
+				Imagen.setLocation(0,Imagen.getY());
+			}
+			if(!this.Genero && Imagen.getY()<=heigth-Imagen.getHeight()+80){
+				Imagen.move(0, 5);
+			}
+			else if(!this.Genero && Imagen.getY()>=heigth-Imagen.getHeight()) {
+				Imagen.setLocation(Imagen.getX(),0);
+			}
 	}
 	public void posicion(int [][] posicion, int i) {
 		this.X=posicion[0][i];

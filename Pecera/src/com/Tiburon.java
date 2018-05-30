@@ -30,10 +30,23 @@ public class Tiburon extends Pez{
 		}
 	}
 	@Override
-	public void mover(GImage Imagen) {
-		Imagen.move(10, 5);
-		this.setX(getX()+10);
-		this.setY(getY()+5);
+	public void mover(GImage Imagen, int heigth, int width) {
+		Random random=new Random();
+		int movimento=random.nextInt(2);
+		if(movimento==0  && Imagen.getX()<=width-Imagen.getWidth()+80) {
+				Imagen.move(30, 0);
+				this.setX(getX()+30);
+			}
+			else if(movimento==0 && Imagen.getX()>=width-Imagen.getWidth()) {
+				Imagen.setLocation(0,Imagen.getY());
+			}
+			if(movimento==1 && Imagen.getY()<=heigth-Imagen.getHeight()+80){
+				Imagen.move(0, 30);
+				this.setY(getY()+30);
+			}
+			else if(movimento==1 &&Imagen.getY()>=heigth-Imagen.getHeight()) {
+				Imagen.setLocation(Imagen.getX(),0);
+			}
 	}
 	
 }
