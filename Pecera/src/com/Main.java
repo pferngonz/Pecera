@@ -79,26 +79,26 @@ public class Main {
 	                for (Guppy miguppy : arrayguppy) {
 	                	if(miguppy.getGenero()==true) {
 	                		miguppy.mover(5, 0,miguppy.getImagen());
-		                    pause(50);
+		                    pause(5);
 	                	}
 	                	else {
 	                		miguppy.mover(0, 5,miguppy.getImagen());
-		                    pause(50);
+		                    pause(5);
 	                	}
 	                }
 	                for (Betta mibetta : arraybetta) {
 	                	if(mibetta.getGenero()==true) {
 	                		mibetta.mover(5, 0,mibetta.getImagen());
-		                    pause(50);
+		                    pause(5);
 	                	}
 	                	else {
 	                		mibetta.mover(0, 5,mibetta.getImagen());
-		                    pause(50);
+		                    pause(5);
 	                	}
 	                	
 					}
 	                tiburon.mover(5, 0,tiburon.getImagen());
-	                pause(100);
+	                pause(5);
 	            }
 	        
 			
