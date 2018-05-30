@@ -68,6 +68,9 @@ public class Pez extends animalmarino{
 		else if(razapez==1) {
 			turnopeces[1]="X";
 		}
+		else if(razapez==2) {
+			turnopeces[2]="X";
+		}
 	}
 	public void mover(GImage Imagen, int heigth, int width) {
 			if(this.Genero && Imagen.getX()<=width-Imagen.getWidth()+80) {

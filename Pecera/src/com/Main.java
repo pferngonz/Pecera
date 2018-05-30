@@ -43,11 +43,9 @@ public class Main {
 				System.out.println(genero2);
 				arraybetta.add(new Betta(genero2));
 				if(genero2==0) {
-					arraybetta.get(i).setGenero(true);
 					System.out.println("betta macho");
 				}
 				else {
-					arraybetta.get(i).setGenero(false);
 					System.out.println("betta hembra");
 				}
 				
@@ -80,7 +78,7 @@ public class Main {
 			String [] turnopeces=new String[5];
 			 boolean vives = true;
 			 int colision;
-	            while (vives) {
+	            while (contadorguppys+contadorbettas!=0) {
 	                for(int i=0; i< arrayguppy.size();i++) {
 	                	if(arrayguppy.get(i)!=null) {
 	                	arrayguppy.get(i).mover(arrayguppy.get(i).getImagen(), getHeight(), getWidth());
@@ -104,11 +102,13 @@ public class Main {
 		                		remove(arrayguppy.get(colision).getImagen());
 		                		arrayguppy.remove(colision);
 		                		contadorguppys--;
+		                		System.out.print("Guppys: "+contadorguppys);
 		                	}
 		                	else if(colision!=500 && turnopeces[1].equals("X")) {
 		                		remove(arraybetta.get(colision).getImagen());
 		                		arraybetta.remove(colision);
 		                		contadorbettas--;
+		                		System.out.print("Bettas: "+contadorbettas);
 		                	}
 		                	turnopeces[0]="";
 		                	turnopeces[1]="";
@@ -138,10 +138,14 @@ public class Main {
 		                	else if(colision!=500 && turnopeces[0].equals("X")) {
 		                		remove(arrayguppy.get(colision).getImagen());
 		                		arrayguppy.remove(colision);
+		                		contadorguppys--;
+		                		System.out.println("Guppys: "+contadorguppys);
 		                	}
 		                	else if(colision!=500 && turnopeces[1].equals("X")) {
 		                		remove(arraybetta.get(colision).getImagen());
 		                		arraybetta.remove(colision);
+		                		contadorbettas--;
+		                		System.out.println("Bettas: "+contadorbettas);
 		                	}
 		                	turnopeces[0]="";
 		                	turnopeces[1]="";
@@ -153,6 +157,25 @@ public class Main {
 	                
 	                tiburon.mover(tiburon.getImagen(), getHeight(), getWidth());
 	                tiburon.getImagen().pause(15);
+	                if(contadorguppys+contadorbettas!=0) {
+	                	tiburon.comer(turnopeces, 2);
+	                	colision=colision(arrayguppy, arraybetta, tiburon, turnopeces);
+	                	if(colision!=500 && turnopeces[0]=="X") {
+	                		remove(arrayguppy.get(colision).getImagen());
+	                		arrayguppy.remove(colision);
+	                		contadorguppys--;
+	                		System.out.print("Guppys: "+contadorguppys);
+	                	}
+	                	if(colision!=500 && turnopeces[1]=="X") {
+	                		remove(arraybetta.get(colision).getImagen());
+	                		arraybetta.remove(colision);
+	                		contadorbettas--;
+	                		System.out.println("Bettas: "+contadorbettas);
+	                	}
+	                	turnopeces[0]="";
+	                	turnopeces[1]="";
+	                	turnopeces[2]="";
+	                }
 	            }
 	        
 			
@@ -253,6 +276,33 @@ public class Main {
 						return colision;
 					}
 				}
+			else if(turnopeces[2].equals("X")) {
+				int contadorderrores=0;
+				for (int i = 0; i < arrayguppy.size(); i++) {
+					if(tiburon.getImagen().getBounds().intersects(arrayguppy.get(i).getImagen().getBounds())) {
+						colision=i;
+						contadorderrores++;
+						break;
+					}
+				}
+				if(contadorderrores==0) {
+					for (int i = 0; i < arraybetta.size(); i++) {
+						if(tiburon.getImagen().getBounds().intersects(arraybetta.get(i).getImagen().getBounds())) {
+							colision=i;
+							contadorderrores++;
+							break;
+						}
+					}
+					if(contadorderrores!=0) {
+						turnopeces[1]="X";
+						return colision;
+					}
+				}
+				else {
+					turnopeces[0]="X";
+					return colision;
+				}
+			}
 			
 			return colision;
 		}
