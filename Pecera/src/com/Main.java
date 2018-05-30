@@ -90,14 +90,14 @@ public class Main {
 	                	if(contadorguppys!=1) {
 	                		arrayguppy.get(i).comer(turnopeces, 0);
 		                	colision=colision(arrayguppy, arraybetta, tiburon, turnopeces);
-		                	if(colision==50) {
-		                		int x=0; int y=0; int genero=random.nextInt(2);
-		                		arrayguppy.get(i).reproducirse(x, y);
+		                	if(colision!=500 && turnopeces[3].equals("X")) {
+		                		int genero=random.nextInt(2);
+		                		arrayguppy.get(i).reproducirse();
 		                		arrayguppy.add(new Guppy(genero));
 		                		contadorguppys++;
-		                		add(arrayguppy.get(arrayguppy.size()+1).getImagen(),x,y);
+		                		add(arrayguppy.get(arrayguppy.size()-1).getImagen(),arrayguppy.get(i).getXH(),arrayguppy.get(i).getYH());
 		                	}
-		                	if(colision!=500 && turnopeces[0].equals("X")) {
+		                	else if(colision!=500 && turnopeces[0].equals("X")) {
 		                		remove(arrayguppy.get(colision).getImagen());
 		                		arrayguppy.remove(colision);
 		                		contadorguppys--;
@@ -150,7 +150,7 @@ public class Main {
 			for (int i = 0; i < arrayguppy.size(); i++) {
 				for (int j = 0; j < arrayguppy.size(); j++) {
 					if(i!=j) {
-						if(arrayguppy.get(i).getGenero()==true && arrayguppy.get(j).getGenero()==false && arrayguppy.get(i).getImagen().getBounds().intersects(arrayguppy.get(j).getImagen().getBounds())) {
+						if(arrayguppy.get(i).getGenero()==true && arrayguppy.get(j).getGenero()==true && arrayguppy.get(i).getImagen().getBounds().intersects(arrayguppy.get(j).getImagen().getBounds())) {
 							colision=j;
 							contadorderrores++;
 							break;

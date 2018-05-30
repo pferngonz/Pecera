@@ -7,6 +7,20 @@ import acm.graphics.GImage;
 public class Pez extends animalmarino{
 	private int X=0;
 	private int Y=0;
+	private int XH=0;
+	private int YH=0;
+	public int getXH() {
+		return XH;
+	}
+	public void setXH(int X) {
+		this.XH=X;
+	}
+	public int getYH() {
+		return YH;
+	}
+	public void setYH(int Y) {
+		this.YH=Y;
+	}
 	private boolean Genero;
 	private int Velocidad;
 	public int getVelocidad() {
@@ -33,10 +47,12 @@ public class Pez extends animalmarino{
 	public int getY() {
 		return Y;
 	}
-	public void reproducirse(int x, int y) {
+	public void reproducirse() {
 		Random random=new Random();
-		x=random.nextInt(800)+80;
-		y=random.nextInt(400)+80;
+		int X=random.nextInt(800)+80;
+		int Y=random.nextInt(400)+80;
+		this.setXH(X);
+		this.setYH(Y);
 	}
 	public void comer(String [] turnopeces, int razapez){
 		if(razapez==0) {
