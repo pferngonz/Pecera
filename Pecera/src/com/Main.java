@@ -14,7 +14,6 @@ public class Main {
 	public static class App extends GraphicsProgram{
 		@Override
 		public void run() {
-			int yustemamon=0;
 			GImage fondo=new GImage("https://rawgit.com/pferngonz/Pecera/master/imagenes/fondo.gif");
 			setSize(1280,720);
 			fondo.setSize(1280,720);
