@@ -102,13 +102,13 @@ public class Main {
 		                		remove(arrayguppy.get(colision).getImagen());
 		                		arrayguppy.remove(colision);
 		                		contadorguppys--;
-		                		System.out.print("Guppys: "+contadorguppys);
+		                		System.out.println("Guppys: "+contadorguppys);
 		                	}
 		                	else if(colision!=500 && turnopeces[1].equals("X")) {
 		                		remove(arraybetta.get(colision).getImagen());
 		                		arraybetta.remove(colision);
 		                		contadorbettas--;
-		                		System.out.print("Bettas: "+contadorbettas);
+		                		System.out.println("Bettas: "+contadorbettas);
 		                	}
 		                	turnopeces[0]="";
 		                	turnopeces[1]="";
@@ -164,7 +164,7 @@ public class Main {
 	                		remove(arrayguppy.get(colision).getImagen());
 	                		arrayguppy.remove(colision);
 	                		contadorguppys--;
-	                		System.out.print("Guppys: "+contadorguppys);
+	                		System.out.println("Guppys: "+contadorguppys);
 	                	}
 	                	if(colision!=500 && turnopeces[1]=="X") {
 	                		remove(arraybetta.get(colision).getImagen());
