@@ -13,6 +13,7 @@ public class Tiburon extends Pez{
 	public GImage getImagen() {
 		return Imagen;
 	}
+
 	public Tiburon(){
 		Random random=new Random();
 		int genero=random.nextInt(2);

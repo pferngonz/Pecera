@@ -30,13 +30,9 @@ public class Pez extends animalmarino{
 	public void comer(){
 		
 	}
-	public void mover(GImage fondo, GImage imagen) {
-		if(X != fondo.getHeight()) {
-			this.X=this.X+1;
-			System.out.println(X);
-			imagen.move(5, 0);
-		}
-		
+	public void mover(int x, int y, GImage Imagen) {
+			Imagen.move(x, y);
+	
 	}
 	public void posicion(int [][] posicion, int i) {
 		this.X=posicion[0][i];
