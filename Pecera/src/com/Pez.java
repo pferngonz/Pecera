@@ -6,6 +6,13 @@ public class Pez extends animalmarino{
 	private int X=0;
 	private int Y=0;
 	private boolean Genero;
+	private int Velocidad;
+	public int getVelocidad() {
+		return Velocidad;
+	}
+	public void setVelocidad(int velocidad) {
+		this.Velocidad=velocidad;
+	}
 	public boolean getGenero() {
 		return Genero;
 	}
@@ -27,7 +34,7 @@ public class Pez extends animalmarino{
 	public void reproducirse() {
 		
 	}
-	public void comer(){
+	public void comer(int i){
 		
 	}
 	public void mover(GImage Imagen, int heigth, int width) {

@@ -77,8 +77,11 @@ public class Main {
 			 boolean vives = true;
 	            while (vives) {
 	                for (Guppy miguppy : arrayguppy) {
+	                	int velocidad=random.nextInt(5)+1;
+	                	miguppy.setVelocidad(velocidad);
 	                	miguppy.mover(miguppy.getImagen(), getHeight(), getWidth());
-	                	pause(5);
+	                	pause(miguppy.getVelocidad());
+	                	
 	                }
 	                for (Betta mibetta : arraybetta) {
 	                	mibetta.mover(mibetta.getImagen(), getHeight(), getWidth());
@@ -88,12 +91,47 @@ public class Main {
 	                
 	                tiburon.mover(tiburon.getImagen(), getHeight(), getWidth());
 	                tiburon.getImagen().pause(3);
+	                int colision=colision(arrayguppy, arraybetta, tiburon);
+                	if(colision!=500) {
+                		remove(arrayguppy.get(colision).getImagen());
+                		arrayguppy.remove(colision);
+                		colision=500;
+                	}
 	            }
 	        
 			
 			
 		}
-
+		public static int colision(ArrayList<Guppy> arrayguppy, ArrayList<Betta> arraybetta, Tiburon tiburon) {
+			int colision=500;
+			for (int i = 0; i < arrayguppy.size(); i++) {
+				for (int j = 0; j < arrayguppy.size(); j++) {
+					if(i!=j) {
+						if(arrayguppy.get(i).getGenero()==true && arrayguppy.get(j).getGenero()==false && arrayguppy.get(i).getImagen().getBounds().intersects(arrayguppy.get(j).getImagen().getBounds())) {
+							colision=j;
+						}
+					}
+					if(i!=j) {
+						if(arrayguppy.get(i).getGenero()==true && arrayguppy.get(j).getGenero()==false && arrayguppy.get(i).getImagen().getBounds().intersects(arrayguppy.get(j).getImagen().getBounds())) {
+							colision=j;
+						}
+					}
+				}
+			}
+			for (int i = 0; i < 1; i++) {
+				for (int j = 0; j < arrayguppy.size(); j++) {
+					if(tiburon.getImagen().getBounds().intersects(arrayguppy.get(j).getImagen().getBounds())) {
+						colision=j;
+					}
+					for (int z = 0; z < arraybetta.size(); z++) {
+						if(tiburon.getImagen().getBounds().intersects(arraybetta.get(z).getImagen().getBounds())) {
+							colision=j;
+						}
+					}
+				}
+			}
+			return colision;
+		}
 		public static void posicion(int numeroguppys, int numerobettas, Tiburon tiburon, ArrayList arrayguppy, ArrayList arraybetta , int [][] posicionpeces) {
 			Random random=new Random();
 			int contadorguppys=0;
