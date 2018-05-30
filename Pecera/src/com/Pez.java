@@ -1,5 +1,7 @@
 package com;
 
+import java.util.Random;
+
 import acm.graphics.GImage;
 
 public class Pez extends animalmarino{
@@ -31,11 +33,18 @@ public class Pez extends animalmarino{
 	public int getY() {
 		return Y;
 	}
-	public void reproducirse() {
-		
+	public void reproducirse(int x, int y) {
+		Random random=new Random();
+		x=random.nextInt(800)+80;
+		y=random.nextInt(400)+80;
 	}
-	public void comer(int i){
-		
+	public void comer(String [] turnopeces, int razapez){
+		if(razapez==0) {
+			turnopeces[0]="X";
+		}
+		else if(razapez==1) {
+			turnopeces[1]="X";
+		}
 	}
 	public void mover(GImage Imagen, int heigth, int width) {
 			if(this.Genero && Imagen.getX()<=width-Imagen.getWidth()+80) {

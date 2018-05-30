@@ -22,8 +22,8 @@ public class Main {
 			ArrayList<Betta> arraybetta=new ArrayList<Betta>();
 			Tiburon tiburon=new Tiburon();
 			Random random=new Random();
-			int numeroguppys=random.nextInt(3)+1;
-			int numerobettas=random.nextInt(3)+1;
+			int numeroguppys=random.nextInt(4)+2;
+			int numerobettas=random.nextInt(4)+2;
 			System.out.println(numeroguppys);
 			System.out.println(numerobettas);
 			int [][] posicionpeces=new int[2][numeroguppys+numerobettas+1];
@@ -60,11 +60,15 @@ public class Main {
 				add(arrayguppy.get(i).getImagen(),posicionpeces[0][i],posicionpeces[1][i]);
 				arrayguppy.get(i).setX(posicionpeces[0][i]);
 				arrayguppy.get(i).setY(posicionpeces[1][i]);
+				int velocidad=random.nextInt(5)+1;
+            	arrayguppy.get(i).setVelocidad(velocidad);
 			}
 			for (int i = arrayguppy.size(); i < arrayguppy.size()+arraybetta.size(); i++) {
 				add(arraybetta.get(contadorbettas).getImagen(),posicionpeces[0][i],posicionpeces[1][i]);
 				arraybetta.get(contadorbettas).setX(posicionpeces[0][i]);
 				arraybetta.get(contadorbettas).setY(posicionpeces[1][i]);
+				int velocidad=random.nextInt(5)+1;
+            	arraybetta.get(contadorbettas).setVelocidad(velocidad);
 				contadorbettas++;
 			}
 			for (int i = arrayguppy.size()+arraybetta.size(); i < arrayguppy.size()+arraybetta.size()+1; i++) {
@@ -72,64 +76,161 @@ public class Main {
 				tiburon.setX(posicionpeces[0][i]);
 				tiburon.setY(posicionpeces[1][i]);
 			}
+			int contadorguppys=numeroguppys;
 			boolean cierto=false;
 			waitForClick();
+			String [] turnopeces=new String[5];
 			 boolean vives = true;
+			 int colision;
 	            while (vives) {
-	                for (Guppy miguppy : arrayguppy) {
-	                	int velocidad=random.nextInt(5)+1;
-	                	miguppy.setVelocidad(velocidad);
-	                	miguppy.mover(miguppy.getImagen(), getHeight(), getWidth());
-	                	pause(miguppy.getVelocidad());
-	                	
+	                for(int i=0; i< arrayguppy.size();i++) {
+	                	if(arrayguppy.get(i)!=null) {
+	                	arrayguppy.get(i).mover(arrayguppy.get(i).getImagen(), getHeight(), getWidth());
+	                	pause(arrayguppy.get(i).getVelocidad());
+	                	if(contadorguppys!=1) {
+	                		arrayguppy.get(i).comer(turnopeces, 0);
+		                	colision=colision(arrayguppy, arraybetta, tiburon, turnopeces);
+		                	if(colision==50) {
+		                		int x=0; int y=0; int genero=random.nextInt(2);
+		                		arrayguppy.get(i).reproducirse(x, y);
+		                		arrayguppy.add(new Guppy(genero));
+		                		contadorguppys++;
+		                		add(arrayguppy.get(arrayguppy.size()+1).getImagen(),x,y);
+		                	}
+		                	if(colision!=500 && turnopeces[0].equals("X")) {
+		                		remove(arrayguppy.get(colision).getImagen());
+		                		arrayguppy.remove(colision);
+		                		contadorguppys--;
+		                	}
+		                	else if(colision!=500 && turnopeces[1].equals("X")) {
+		                		remove(arraybetta.get(colision).getImagen());
+		                		arraybetta.remove(colision);
+		                		contadorbettas--;
+		                	}
+		                	turnopeces[0]="";
+		                	turnopeces[1]="";
+		                	turnopeces[3]="";
+	                	}
 	                }
-	                for (Betta mibetta : arraybetta) {
-	                	mibetta.mover(mibetta.getImagen(), getHeight(), getWidth());
-	                	pause(5);
+	                }
+	                for (int i=0;i<arraybetta.size();i++) {
+	                	if(arraybetta.get(i)!=null) {
+	                	arraybetta.get(i).mover(arraybetta.get(i).getImagen(), getHeight(), getWidth());
+	                	pause(arraybetta.get(i).getVelocidad());
+	                	if(contadorbettas!=1) {
+	                		arraybetta.get(i).comer(turnopeces, 1);
+		                	colision=colision(arrayguppy, arraybetta, tiburon, turnopeces);
+		                	if(colision!=500 && turnopeces[0].equals("X")) {
+		                		remove(arrayguppy.get(colision).getImagen());
+		                		arrayguppy.remove(colision);
+		                	}
+		                	else if(colision!=500 && turnopeces[1].equals("X")) {
+		                		remove(arraybetta.get(colision).getImagen());
+		                		arraybetta.remove(colision);
+		                	}
+		                	turnopeces[0]="";
+		                	turnopeces[1]="";
+	                	}
 	                	
 					}
+	                }
 	                
 	                tiburon.mover(tiburon.getImagen(), getHeight(), getWidth());
-	                tiburon.getImagen().pause(3);
-	                int colision=colision(arrayguppy, arraybetta, tiburon);
-                	if(colision!=500) {
-                		remove(arrayguppy.get(colision).getImagen());
-                		arrayguppy.remove(colision);
-                		colision=500;
-                	}
+	                tiburon.getImagen().pause(15);
 	            }
 	        
 			
 			
 		}
-		public static int colision(ArrayList<Guppy> arrayguppy, ArrayList<Betta> arraybetta, Tiburon tiburon) {
+		public static int colision(ArrayList<Guppy> arrayguppy, ArrayList<Betta> arraybetta, Tiburon tiburon, String [] turnopeces) {
 			int colision=500;
+			if(turnopeces[0].equals("X")) {
+				int contadorderrores=0;
+				int contadorderroresembarazados=0;
 			for (int i = 0; i < arrayguppy.size(); i++) {
 				for (int j = 0; j < arrayguppy.size(); j++) {
 					if(i!=j) {
 						if(arrayguppy.get(i).getGenero()==true && arrayguppy.get(j).getGenero()==false && arrayguppy.get(i).getImagen().getBounds().intersects(arrayguppy.get(j).getImagen().getBounds())) {
 							colision=j;
+							contadorderrores++;
+							break;
 						}
-					}
-					if(i!=j) {
+					
+					
 						if(arrayguppy.get(i).getGenero()==true && arrayguppy.get(j).getGenero()==false && arrayguppy.get(i).getImagen().getBounds().intersects(arrayguppy.get(j).getImagen().getBounds())) {
-							colision=j;
+							colision=50;
+							contadorderroresembarazados++;
+							break;
 						}
 					}
 				}
 			}
-			for (int i = 0; i < 1; i++) {
-				for (int j = 0; j < arrayguppy.size(); j++) {
-					if(tiburon.getImagen().getBounds().intersects(arrayguppy.get(j).getImagen().getBounds())) {
+			if(contadorderrores==0 && contadorderroresembarazados==0) {
+			for (int i = 0; i < arrayguppy.size(); i++) {
+				for (int j = 0; j < arraybetta.size(); j++) {
+					if(arrayguppy.get(i).getGenero()==true && arraybetta.get(j).getGenero()==true && arrayguppy.get(i).getImagen().getBounds().intersects(arraybetta.get(j).getImagen().getBounds())) {
 						colision=j;
-					}
-					for (int z = 0; z < arraybetta.size(); z++) {
-						if(tiburon.getImagen().getBounds().intersects(arraybetta.get(z).getImagen().getBounds())) {
-							colision=j;
-						}
+						contadorderrores++;
+						break;
 					}
 				}
 			}
+			if(contadorderrores!=0 && contadorderroresembarazados==0) {
+				turnopeces[0]="";
+				turnopeces[1]="X";
+				return colision;
+			}
+			}
+			else if(contadorderrores!=0 && contadorderroresembarazados==0){
+				turnopeces[0]="X";
+				return colision;
+			}
+			else if(contadorderroresembarazados!=0) {
+				turnopeces[3]="X";
+				return colision;
+			}
+			
+			}
+			else if(turnopeces[1].equals("X")) {
+				int contadorderrores=0;
+				for (int i = 0; i <arraybetta.size(); i++) {
+					for (int j = 0; j < arraybetta.size(); j++) {
+						if(i!=j) {
+							if(arraybetta.get(i).getGenero()==true && arraybetta.get(j).getGenero()==true && arraybetta.get(i).getImagen().getBounds().intersects(arraybetta.get(j).getImagen().getBounds())) {
+								colision=j;
+								contadorderrores++;
+								break;
+							}
+							if(arraybetta.get(i).getGenero()==true && arraybetta.get(j).getGenero()==false && arraybetta.get(i).getImagen().getBounds().intersects(arraybetta.get(j).getImagen().getBounds())) {
+								colision=j;
+								contadorderrores++;
+								break;
+							}
+						}
+					}
+				}
+					if(contadorderrores==0) {
+						for (int i = 0; i < arraybetta.size(); i++) {
+							for (int j = 0; j < arrayguppy.size(); j++) {
+								if(arraybetta.get(i).getGenero()==true && arrayguppy.get(j).getGenero()==true && arraybetta.get(i).getImagen().getBounds().intersects(arrayguppy.get(j).getImagen().getBounds())) {
+									colision=j;
+									contadorderrores++;
+									break;
+								}
+							}
+						}
+						if(contadorderrores!=0) {
+							turnopeces[0]="X";
+							turnopeces[1]="";
+							return colision;
+						}
+					}
+					else {
+						turnopeces[1]="X";
+						return colision;
+					}
+				}
+			
 			return colision;
 		}
 		public static void posicion(int numeroguppys, int numerobettas, Tiburon tiburon, ArrayList arrayguppy, ArrayList arraybetta , int [][] posicionpeces) {
