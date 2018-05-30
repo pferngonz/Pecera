@@ -10,8 +10,11 @@ public class Pez extends animalmarino{
 	private int XH=0;
 	private int YH=0;
 	private int Vecespreñao=1;
-	public int setVecespreñao() {
+	public int getVecespreñao() {
 		return Vecespreñao;
+	}
+	public void setVecespreñao() {
+		this.Vecespreñao=this.Vecespreñao-1;
 	}
 	public int getXH() {
 		return XH;

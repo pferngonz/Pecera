@@ -14,11 +14,12 @@ public class Guppy extends Pez {
 		if(genero==0) {
 			this.Imagen=new GImage("https://rawgit.com/pferngonz/Pecera/master/imagenes/pezmacho.png");
 			this.Imagen.setSize(80,80);
+			this.setGenero(true);
 		}
 		if (genero==1) {
 			this.Imagen=new GImage("https://rawgit.com/pferngonz/Pecera/master/imagenes/pezhembra.png");
 			this.Imagen.setSize(80,80);
-
+			this.setGenero(false);
 		}
 	}
 }
