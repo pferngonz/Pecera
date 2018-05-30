@@ -34,15 +34,15 @@ public class Tiburon extends Pez{
 		Random random=new Random();
 		int movimento=random.nextInt(2);
 		if(movimento==0  && Imagen.getX()<=width-Imagen.getWidth()+80) {
-				Imagen.move(30, 0);
-				this.setX(getX()+30);
+				Imagen.move(5, 0);
+				this.setX(getX()+5);
 			}
 			else if(movimento==0 && Imagen.getX()>=width-Imagen.getWidth()) {
 				Imagen.setLocation(0,Imagen.getY());
 			}
 			if(movimento==1 && Imagen.getY()<=heigth-Imagen.getHeight()+80){
-				Imagen.move(0, 30);
-				this.setY(getY()+30);
+				Imagen.move(0, 10);
+				this.setY(getY()+10);
 			}
 			else if(movimento==1 &&Imagen.getY()>=heigth-Imagen.getHeight()) {
 				Imagen.setLocation(Imagen.getX(),0);

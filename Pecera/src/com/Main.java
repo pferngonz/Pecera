@@ -91,7 +91,6 @@ public class Main {
 		                		int genero=random.nextInt(2);
 		                		arrayguppy.get(i).reproducirse();
 		                		arrayguppy.add(new Guppy(genero));
-		                		contadorguppys++;
 		                		arrayguppy.get(arrayguppy.size()-1).setX(arrayguppy.get(i).getXH());
 		                		arrayguppy.get(arrayguppy.size()-1).setY(arrayguppy.get(i).getYH());
 		                		add(arrayguppy.get(arrayguppy.size()-1).getImagen(),arrayguppy.get(arrayguppy.size()-1).getX(),arrayguppy.get(arrayguppy.size()-1).getY());
@@ -128,7 +127,6 @@ public class Main {
 		                		int genero=random.nextInt(2);
 		                		arraybetta.get(i).reproducirse();
 		                		arraybetta.add(new Betta(genero));
-		                		contadorbettas++;
 		                		arraybetta.get(arraybetta.size()-1).setX(arraybetta.get(i).getXH());
 		                		arraybetta.get(arraybetta.size()-1).setY(arraybetta.get(i).getYH());
 		                		add(arraybetta.get(arraybetta.size()-1).getImagen(),arraybetta.get(arraybetta.size()-1).getX(),arraybetta.get(arraybetta.size()-1).getY());
