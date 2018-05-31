@@ -11,12 +11,12 @@ public class Guppy extends Pez {
 	}
 	
 	public Guppy(int genero){
-		if(genero==0) {
+		if(genero==Genero.MACHO.getGenerovalor()) {
 			this.Imagen=new GImage("https://rawgit.com/pferngonz/Pecera/master/imagenes/pezmacho.png");
 			this.Imagen.setSize(80,80);
 			this.setGenero(true);
 		}
-		if (genero==1) {
+		if (genero==Genero.HEMBRA.getGenerovalor()) {
 			this.Imagen=new GImage("https://rawgit.com/pferngonz/Pecera/master/imagenes/pezhembra.png");
 			this.Imagen.setSize(80,80);
 			this.setGenero(false);

@@ -73,11 +73,9 @@ public class Main {
 				tiburon.setY(posicionpeces[1][i]);
 			}
 			int contadorguppys=numeroguppys;
-			boolean cierto=false;
 			waitForClick();
 			String [] turnopeces=new String[5];
-			 boolean vives = true;
-			 int colision;
+			int colision;
 	            while (contadorguppys+contadorbettas!=0) {
 	                for(int i=0; i< arrayguppy.size();i++) {
 	                	if(arrayguppy.get(i)!=null) {
